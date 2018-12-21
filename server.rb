@@ -8,7 +8,7 @@ require 'active_record'
 #require model classes
 # require './models/cake.rb'
 require './models/user.rb'
-
+require './models/post.rb'
 # Use `binding.pry` anywhere in this script for easy debugging
 require 'pry'
 require 'csv'
@@ -28,6 +28,7 @@ get '/' do
 end
 
 get '/homepage' do
+  @all_posts = Post.all
   if session[:user_id]
     @user = User.find(session[:user_id])
     erb :homepage
@@ -58,5 +59,14 @@ end
 post '/users/signup' do
   new_user = User.create(first_name: params["first-name"], last_name: params["last-name"], email: params["signup-email"], birthday: params["dob"], password: params["signup-password"])
   session[:user_id] = new_user.id
+  redirect '/homepage'
+end
+
+get '/users/posts' do
+  erb :homepage
+end
+
+post '/users/posts' do
+  @new_post = Post.create(text_entry: params["text_entry"], tag: params["tags"])
   redirect '/homepage'
 end

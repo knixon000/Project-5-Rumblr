@@ -1,0 +1,9 @@
+<div class="ui raised segment" id="feed">
+  <% @all_posts.reverse_each do |posts| %>
+    <p><%= posts.text_entry %></p>
+    <p><%= posts.tag %></p>
+    <div class="ui fitted divider"></div>
+  <% end %>
+
+
+</div>

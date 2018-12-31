@@ -1,3 +1,3 @@
 class Post < ActiveRecord::Base
-
-end 
+  belongs_to :user, required: true
+end

@@ -66,7 +66,33 @@ get '/users/posts' do
   erb :homepage
 end
 
+get '/profile' do
+  @all_posts = Post.all
+  @posts = Post.find_by(text_entry: params["text_entry"], tag: params["tags"])
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+    erb :profile
+  else
+    redirect '/'
+  end
+end
+
 post '/users/posts' do
   @new_post = Post.create(text_entry: params["text_entry"], tag: params["tags"])
-  redirect '/homepage'
+  redirect '/profile'
+end
+
+get '/deactivate' do
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+    erb :deactivate
+  else
+    redirect '/'
+  end
+end
+
+get '/destroy' do
+    @user = User.find(session[:user_id])
+    @user.destroy
+    redirect '/'
 end

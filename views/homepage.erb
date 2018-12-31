@@ -1,8 +1,8 @@
 <% if @user %>
   <div class="ui raised segment" id="feed">
     <form method="POST" action="/users/posts">
-      <textarea name="text_entry" rows="8" cols="80"></textarea>
-      <textarea name="tags" rows="1" cols="80"></textarea>
+      <textarea name="text_entry" rows="8" cols="80" required></textarea>
+      <textarea name="tags" rows="1" cols="80" required></textarea>
       <br>
       <button class="ui button" type="submit">
         Post
@@ -10,8 +10,11 @@
     </form>
   </div>
   <div class="ui raised segment" id="feed">
-    <% @all_posts.each do |Post| %>
-      <p><%= @_post %></p>
+    <% @all_posts.reverse_each do |posts| %>
+      <p><%= posts.text_entry %></p>
+      <p><%= posts.tag %></p>
+      <div class="ui fitted divider"></div>
     <% end %>
   </div>
+
 <% end %>

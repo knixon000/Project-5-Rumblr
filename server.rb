@@ -67,10 +67,9 @@ get '/users/posts' do
 end
 
 get '/profile' do
-  @all_posts = Post.all
-  @posts = Post.find_by(text_entry: params["text_entry"], tag: params["tags"])
   if session[:user_id]
     @user = User.find(session[:user_id])
+    @users_posts = Post.where(user_id: @user)
     erb :profile
   else
     redirect '/'
@@ -78,7 +77,7 @@ get '/profile' do
 end
 
 post '/users/posts' do
-  @new_post = Post.create(text_entry: params["text_entry"], tag: params["tags"])
+  @new_post = Post.create(user_id: session[:user_id], text_entry: params["text_entry"], tag: params["tags"])
   redirect '/profile'
 end
 

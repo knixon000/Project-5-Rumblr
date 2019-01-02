@@ -1,0 +1,12 @@
+<h2 class="ui center aligned icon header">
+  <i class="circular users icon"></i>
+  <%= @user_profile.first_name + " " + @user_profile.last_name %>
+</h2>
+
+<div class="ui raised segment" id="feed">
+  <% @user_profile.posts.reverse_each do |posts| %>
+      <p><%= posts.text_entry %></p>
+      <p><%= posts.tag %></p>
+      <div class="ui fitted divider"></div>
+  <% end %>
+</div>

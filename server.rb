@@ -102,3 +102,9 @@ get '/destroy' do
     @user.destroy
     redirect '/'
 end
+
+get '/user_profile/:id' do
+  @user = User.find(session[:user_id])
+  @user_profile = User.find(params[:id])
+  erb :user_profile
+end

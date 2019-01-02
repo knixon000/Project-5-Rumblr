@@ -7,3 +7,16 @@ h1 {
   margin-left: 20%;
   margin-right: 20%;
 }
+
+#login {
+  height: 300px;
+  background-image: url(fan-lr.png);
+  background-size: contain;
+}
+
+.fan-lr h1 {
+  padding: 60px;
+  background-color: white;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 200px;
+}
